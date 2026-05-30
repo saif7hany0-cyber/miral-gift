@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ميرال.. سلطانة القلب والروح 👑</title>
+    <style>
+        body {
+            font-family: 'Amiri', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0c0e12; 
+            color: #ffffff; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* شاشة الهدية القابلة للفتح */
+        #giftIntro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0c0e12;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .gift-box-icon {
+            font-size: 100px;
+            animation: bounce 2s infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        #openBtn {
+            background-color: #ff3366;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 15px #ff3366;
+            transition: transform 0.2s;
+        }
+
+        #openBtn:hover {
+            transform: scale(1.1);
+        }
+
+        /* حاوية المحتوى الأساسي */
+        .gift-container {
+            background-color: #1a1f26; 
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 85%;
+            max-width: 700px;
+            border: 2px solid #0a84ff; 
+            margin: 40px 0;
+            opacity: 0;
+            transition: opacity 1s ease 0.5s;
+            z-index: 2;
+        }
+
+        h1 {
+            color: #0a84ff; 
+            font-size: 36px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px rgba(10, 132, 255, 0.7);
+        }
+
+        .poem-container {
+            margin-bottom: 30px;
+            font-size: 22px;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-align: justify;
+        }
+
+        .photos-wrapper {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .photo-container {
+            width: 200px;
+            border: 5px solid #0a84ff; 
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(10, 132, 255, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-container.wide {
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .photo-container:hover {
+            transform: scale(1.05); 
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* سيكشن التقييم بالنجوم */
+        .rating-section {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed #0a84ff;
+        }
+
+        .rating-title {
+            font-size: 20px;
+            color: #ffcc00;
+            margin-bottom: 15px;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            direction: ltr; 
+        }
+
+        .star {
+            font-size: 30px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            color: #444;
+        }
+
+        .star:hover {
+            transform: scale(1.2);
+        }
+
+        .star.active {
+            color: #ffcc00;
+            text-shadow: 0 0 10px #ffcc00;
+        }
+
+        #ratingResult {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #0a84ff;
+            font-weight: bold;
+            min-height: 25px;
+        }
+
+        /* عناصر القلوب والقطط المتساقطة */
+        .floating-element {
+            position: absolute;
+            position: fixed;
+            top: -50px;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 1;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="giftIntro">
+        <h2 style="color: #0a84ff; font-size: 28px; margin-bottom: 10px;">أفتحي الهدية يا سلطانة 🎁</h2>
+        <div class="gift-box-icon">🎁</div>
+        <button id="openBtn">Open</button>
+    </div>
+
+    <div class="gift-container" id="mainContainer">
+        <h1>ميرال.. سُلْطَانَةُ القَلْبِ وَالرُّوحِ 👑</h1>
+
+        <div class="poem-container">
+            لَا أَحَدَ فِي الكَوْنِ يُشْبِهُكِ لَا لَا الشَّمْسُ وَلَا حَتَّى القَمَرُ الجَمَالُ خَاتَمٌ فِي إِصْبَعِكِ وَأَنْتِ سُلْطَانَةُ العَقْلِ وَالرُّوحِ يَا مِيرَالُ
+            <br><br>
+            إِذَا كَانَ حُبِّي لِعُيُونِكِ الزَّرْقَاءِ الَّتِي تُشْبِهُ البَحْرَ ذَنْبًا يَسْتَحِقُّ العُقُوبَةَ فَزِيدِينِي ذُنُوبًا إِنِّي لَا أَحْيَا مِنْ دُونِهَا دُمُوعُ عَيْنِي يَا حَبِيبَتِي تَحَوَّلَتْ إِلَى بَحْرٍ حَوْلَكِ كَيْفَ أَسْتَطِيعُ أَنْ أُبْحِرَ إِلَى شَاطِئِي وَكُلُّ الأَمْوَاجِ تَقُودُنِي إِلَيْكِ وَإِلَى سِحْرِ شَعْرِكِ الأَسْوَدِ اللَّيْلِيِّ
+            <br><br>
+            يَظُنُّونَ السُّلْطَانَ لَا يَبْكِي لَكِنَّ الدُّمُوعَ تَجْرِي عَلَى قَلْبِي لَا تَلُمْنِي يَا صَاحِبِي فَنَارُ الحُبِّ أَشْعَلَتْ وَجْدِي بِصَاحِبَةِ الوَجْهِ الأَبْيَضِ المَلَائِكِيِّ يَا صَاحِبِي لَا تُخَيِّرْنِي فِي الحُبِّ فَإِنِّي اخْتَرْتُ مَلِكَتِي وَرَضِيتُ أَنْ أَنْزَعَ أَمَامَهَا تَاجِي وَأُصْبِحَ عَبْدًا لِضِحْكَتِهَا الَّتِي تَرُدُّ الرُّوحَ
+        </div>
+
+        <div class="photos-wrapper">
+            <div class="photo-container">
+                <img src="https://i.ibb.co/8BhpBgh/21-03-2011.jpg" alt="ميرال وهي صغيرة">
+            </div>
+
+            <div class="photo-container">
+                <img src="https://i.ibb.co/8LVQtXP/chibi-couple.png" alt="صورة كرتونية">
+            </div>
+
+            <div class="photo-container wide">
+                <img src="https://i.ibb.co/3Yr29S6/Desktop-Screenshot-2025-08-09-10-40-20-49.png" alt="صورة روبلكس">
+            </div>
+        </div>
+
+        <div class="rating-section">
+            <div class="rating-title">تقييمك للهدية كام من عشرة يا ميمي؟ ⭐</div>
+            <div class="stars" id="starContainer">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+                <span class="star" data-value="6">★</span>
+                <span class="star" data-value="7">★</span>
+                <span class="star" data-value="8">★</span>
+                <span class="star" data-value="9">★</span>
+                <span class="star" data-value="10">★</span>
+            </div>
+            <div id="ratingResult"></div>
+        </div>
+
+    </div>
+
+    <script>
+        const openBtn = document.getElementById('openBtn');
+        const giftIntro = document.getElementById('giftIntro');
+        const mainContainer = document.getElementById('mainContainer');
+        
+        // الأغنية
+        const audioUrl = "https://ia902604.us.archive.org/32/items/radiohead-let-down-remastered/Radiohead%20-%20Let%20Down%20%28Remastered%29.mp3"; 
+        const audio = new Audio(audioUrl);
+
+        // فتح الهدية وتشغيل الأغنية وظهور المحتوى
+        openBtn.addEventListener('click', () => {
+            giftIntro.style.opacity = '0';
+            giftIntro.style.visibility = 'hidden';
+            mainContainer.style.opacity = '1';
+            audio.play().catch(error => console.log("Audio play blocked"));
+            createElementsWindow(); 
+        });
+
+        // صناعة القلوب والقطط الطائرة
+        const shapes = ['❤️', '🐱', '✨', '💖', '🐾'];
+        function createElementsWindow() {
+            setInterval(() => {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                element.innerText = shapes[Math.floor(Math.random() * shapes.length)];
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.animationDuration = Math.random() * 3 + 2 + 's'; 
+                element.style.opacity = Math.random();
+                element.style.fontSize = Math.random() * 20 + 15 + 'px';
+                
+                document.body.appendChild(element);
+                
+                setTimeout(() => {
+                    element.remove();
+                }, 5000);
+            }, 300);
+        }
+
+        // تفاعل نظام التقييم
+        const stars = document.querySelectorAll('.star');
+        const ratingResult = document.getElementById('ratingResult');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const value = parseInt(star.getAttribute('data-value'));
+                
+                stars.forEach(s => {
+                    if(parseInt(s.getAttribute('data-value')) <= value) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+
+                ratingResult.innerText = "أكيد التقييم 9/10 هتقولي ليه مش 10 هقولك علشان متقوليش اني بطبل وكده الو اشغله هيهيهيهي  👑";
+            });
+        });
+    </script>
+
+</body>
+</html>
